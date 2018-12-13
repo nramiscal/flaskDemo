@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Flask Demo</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1>Hello Universe!</h1>
+        <a href="/id/1"><button class="button">Link</button></a><br><br>
+        <img src="{{ url_for('static', filename='img/universe.webp') }}">
+        <br><br>
+        <form action="/process" method="post">
+            Your Name: <input type="text" name="name" placeholder="Name"><br>
+            Your Email: <input type="text" name="email" placeholder="Email"><br><br>
+            <input type="hidden" name="secret" value="Secret!">
+            <input class="button" type="submit" value="Sign Up!">
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </body>
+</html>
